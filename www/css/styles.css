@@ -1,0 +1,6 @@
+.clearfloat {
+        clear: both;
+        height: 0;
+        font-size: 1px;
+        line-height: 0px;
+}

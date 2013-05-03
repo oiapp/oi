@@ -67,6 +67,26 @@ function makeTuple(name, val) {
 	return ret;
 }
 
+function contactErrorToString(errCode) {
+	switch (errCode) {
+	case ContactError.UNKNOWN_ERROR:
+		return "Unknown error";
+	case ContactError.INVALID_ARGUMENT_ERROR:
+		return "Invalid argument";
+	case ContactError.TIMEOUT_ERROR:
+		return "Timeout";
+	case ContactError.PENDING_OPERATION_ERROR:
+		return "Pending operation";
+	case ContactError.IO_ERROR:
+		return "Input/output error";
+	case ContactError.NOT_SUPPORTED_ERROR:
+		return "Not supported";
+	case ContactError.PERMISSION_DENIED_ERROR:
+		return "Permission denied";
+	}
+	return "Error code " + errCode;
+}
+
 function showContacts(list) {
 	navigator.contacts.find(
 		['*'],
@@ -83,7 +103,7 @@ function showContacts(list) {
 		},
 		function(error) {
 			// Failure
-			console.log('Contacts error' + error);
+			console.log('Error retrieving contacts: ' + contactErrorToString(error.code));
 		},
 		{}
 	);

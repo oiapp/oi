@@ -6,11 +6,11 @@ function takePicture(img) {
 			width : '100%',
 			height : '100%'
 		});
-	}, function(err) {
+	}, function(message) {
 		// Failure
 		// Following setTimeout works around an iOS bug
 		setTimeout(function() {
-			console.log('Picture taking failed: errcode ' + err.code + ': ' + err.message);
+			console.log('Picture taking failed: ' + message);
 		}, 0);
 	}, {
 		destinationType : Camera.DestinationType.FILE_URI,

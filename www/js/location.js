@@ -1,3 +1,14 @@
+function locationErrorToString(errCode) {
+	switch (errCode) {
+	case PositionError.PERMISSION_DENIED:
+		return "Permission denied";
+	case PositionError.POSITION_UNAVAILABLE:
+		return "Position unavailable";
+	case PositionError.TIMEOUT:
+		return "Timeout";
+	}
+	return "Error code " + errCode;
+}
 function showLocation(elt, position) {
 	elt.text(
 		'Latitude: '          + position.coords.latitude          + '\n' +

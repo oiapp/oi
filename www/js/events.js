@@ -18,7 +18,7 @@ function onDeviceReady(event) {
 		}
 	}
 	function onLocationError(err) {
-		console.log('Error obtaining location: errcode ' + err.code + ': ' + err.message);
+		console.log('Error obtaining location: ' + locationErrorToString(err.code) + ': ' + err.message);
 		stopWatchingPosition(); // Cancel existing watch
 		if (err.code === PositionError.PERMISSION_DENIED) {
 			return; //  Fatal error; bail out

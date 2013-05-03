@@ -9,6 +9,7 @@ function locationErrorToString(errCode) {
 	}
 	return "Error code " + errCode;
 }
+
 function showLocation(elt, position) {
 	elt.text(
 		'Latitude: '          + position.coords.latitude          + '\n' +

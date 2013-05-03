@@ -20,6 +20,18 @@ Copyright (C) 2013. All rights reserved.
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
+            <span>jQuery: </span><span class="jqueryOutput"></span><br />
+            <span>jQuery Mobile: </span><span class="jqueryMobileOutput"></span>
+            <br class="clearfloat" />
+            <button id="takePicture">Take Picture</button>
+            <button id="showContacts">List Contacts</button>
+            <br class="clearfloat" />
+            <img src="#" id="thePicture" />
+            <br class="clearfloat" />
+            <span id="theLocation"></span>
+            <br class="clearfloat" />
+            <ol id="theContacts">
+            </ol>
         </div>
         <script type="text/javascript" src="cordova-2.6.0.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -27,32 +39,10 @@ Copyright (C) 2013. All rights reserved.
         <script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
         <script type="text/javascript" src="js/camera.js"></script>
         <script type="text/javascript" src="js/contacts.js"></script>
-        <span>jQuery: </span><span class="jqueryOutput"></span>
-        <span>jQuery Mobile: </span><span class="jqueryMobileOutput"></span>
-        <br class="clearfloat" />
-        <button id="takePicture">Take Picture</button>
-        <button id="showContacts">List Contacts</button>
-        <br class="clearfloat" />
-        <img src="#" id="thePicture" />
-        <ol id="theContacts">
-        </ol>
-        <script type="text/javascript">
-$(document).on('deviceready', function(event) {
-	$('.jqueryOutput').text('Version ' + $.fn.jquery + ' initialised');
-   	$('.jqueryMobileOutput').text('Version ' + $.mobile.version + ' initialised');
-	$('#takePicture').on('click', function() {
-		var elem = $('#thePicture');
-		takePicture(elem);
-	});
-	$('#showContacts').on('click', function() {
-		var elem = $('#theContacts');
-		showContacts(elem);
-	});
-});
-        </script>
         <script type="text/javascript">
             app.initialize();
         </script>
         <script type="text/javascript" src="js/debug.js"></script>
+        <script type="text/javascript" src="js/events.js"></script>
     </body>
 </html>

@@ -1,50 +1,70 @@
+function makeOrderedList(arr) {
+	var list;
+	if (arr.length) {
+		list = $('<ol>');
+		$(arr).each(function(i, elem) {
+			var item = $('<li>'), tuple = makeTuple('', elem);
+			if (tuple) {
+				item.append(tuple);
+			}
+			list.append(item);
+		});
+	} else {
+		list = undefined; // Omit empty lists
+	}
+	return list;
+}
+
+function makeUnorderedList(obj) {
+	var list = undefined, prop, item, tuple;
+	for (prop in obj) {
+		if (null !== obj[prop] && undefined !== obj[prop] && typeof(obj[prop]) !== 'null' && typeof(obj[prop]) !== 'undefined' && typeof(obj[prop]) !== 'function') {
+			list = obj[prop];
+			break;
+		}
+	}
+	if (typeof(list) === 'undefined') {
+		return; // Omit empty objects and objects consisting only of non-displayable properties
+	}
+	list = $('<ul>');
+	for (prop in obj) {
+		if (null === obj[prop] || undefined === obj[prop] || typeof(obj[prop]) === 'null' || typeof(obj[prop]) === 'undefined' || typeof(obj[prop]) === 'function' || '' === obj[prop]) {
+			continue; // Omit non-displayable or empty-string properties
+		}
+		item = $('<li>');
+		tuple = makeTuple(prop, obj[prop]);
+		if (tuple) {
+			item.append(tuple)
+		}
+		list.append(item);
+	}
+	return list;
+}
+
 function makeTuple(name, val) {
-	console.log(name, val);
-	var ret, prop, tuple;
-	if (typeof(val) === 'null' || typeof(val) === 'undefined' || typeof(val) === 'function' || !val) {
+	var ret, nameHtml, valHtml = undefined;
+	if (null === val || undefined === val || typeof(val) === 'null' || typeof(val) === 'undefined' || typeof(val) === 'function' || '' === val) {
 		return;
 	}
 	if (typeof(val) === 'array' || val instanceof Array) {
-		if (!val.length) {
-			return; // Omit empty lists
-		}
-		ret = $('<ol>');
-		$(val).each(function(i, elem) {
-			tuple = makeTuple('', elem);
-			if (tuple) {
-				ret.append($('<li>').append(tuple));
-			}
-		});
+		valHtml = makeOrderedList(val);
 	} else if (typeof(val) === 'object') {
-		ret = undefined;
-		for (prop in val) {
-			if (typeof(val[prop]) !== 'null' && typeof(val[prop]) !== 'undefined' && typeof(val[prop]) !== 'function') {
-				ret = val[prop];
-				break;
-			}
-		}
-		if (typeof(ret) === 'undefined') {
-			return; // Omit empty objects and objects consisting only of non-displayable properties
-		}
-		ret = $('<ul>');
-		for (prop in val) {
-			tuple = makeTuple(prop, val[prop]);
-			if (tuple) {
-				ret.append($('<li>').append(tuple));
-			}
-		}
+		valHtml = makeUnorderedList(val);
 	} else {
-		ret = $('<span>');
-		ret.addClass('value');
-		ret.text('' + val);
-		ret.after('<br>');
+		valHtml = $('<span>');
+		valHtml.text('' + val);
+		// valHtml.after('<br>');
 	}
-	var ret2 = $('<span>');
-	ret2.addClass('name');
-	ret2.text(name ? name + ':' : name);
-	ret2.after(ret);
-	console.log(ret2);
-	return ret2;
+	if (!valHtml) {
+		return;
+	}
+	nameHtml = $('<span>');
+	nameHtml.addClass('name');
+	nameHtml.text(name);
+	valHtml.addClass('value');
+	ret = $('<span>');
+	ret.append(nameHtml).append('<span>: </span>').append(valHtml);
+	return ret;
 }
 
 function showContacts(list) {

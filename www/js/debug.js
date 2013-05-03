@@ -8,8 +8,12 @@
 	if (typeof(navigator.contacts.find) === "undefined") {
 		navigator.contacts.find = function(props, success) {
 			success([
-				{ foo: 'bar' },
-				{ baz: 'frort' }
+				{ string1: 'stringval1' },
+				{ array: [ 'zero', 'one', 'two' ] },
+				{ subobj: { foo: 'bar', baz: 'frort' } },
+				{ emptyString: '' },
+				{ nullval: null },
+				{ undefval: undefined }
 			]);
 		};
 	}

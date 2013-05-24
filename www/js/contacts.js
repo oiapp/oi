@@ -92,7 +92,7 @@ function showContacts(list) {
 		['*'],
 		function(contacts) {
 			// Success
-			if (true) {
+			if (false) {
 				// Display raw JSON
 				list.text(JSON.stringify(contacts));
 			} else {
@@ -111,6 +111,8 @@ function showContacts(list) {
 			// Failure
 			console.log('Error retrieving contacts: ' + contactErrorToString(error.code));
 		},
-		{}
+        {
+            multiple: true
+        }
 	);
 }

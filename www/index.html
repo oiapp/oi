@@ -14,24 +14,22 @@ Copyright (C) 2013. All rights reserved.
         <title>Oi</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Oi</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-            <span>jQuery: </span><span class="jqueryOutput"></span><br />
-            <span>jQuery Mobile: </span><span class="jqueryMobileOutput"></span>
+        <div class="app"></div>
+        <div data-role="page">
+          <div data-role="header">Oi</div>
+          <div data-role="content">
+            <span style="font-size: smaller">jQuery: </span><span class="jqueryOutput"></span><br />
+            <span style="font-size:smaller">jQuery Mobile: </span><span class="jqueryMobileOutput"></span>
             <br class="clearfloat" />
             <button id="takePicture">Take Picture</button>
             <button id="showContacts">List Contacts</button>
             <br class="clearfloat" />
             <img src="#" id="thePicture" />
             <br class="clearfloat" />
-            <ol id="theContacts">
-            </ol>
+            <ol id="theContacts"></ol>
             <br class="clearfloat" />
             <span id="theLocation"></span>
+          </div>
         </div>
         <script type="text/javascript" src="cordova-2.6.0.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

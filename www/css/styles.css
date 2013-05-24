@@ -4,3 +4,11 @@
         font-size: 1px;
         line-height: 0px;
 }
+
+.jqueryOutput {
+	font-size: smaller;
+}
+
+.jqueryMobileOutput {
+	font-size: smaller;
+}

@@ -68,6 +68,9 @@ function makeTuple(name, val) {
 }
 
 function contactErrorToString(errCode) {
+	if (typeof(ContactError) === "undefined") {
+		return "Error " + errorCode + " (details from ContactError unavailable)";
+	}
 	switch (errCode) {
 	case ContactError.UNKNOWN_ERROR:
 		return "Unknown error";

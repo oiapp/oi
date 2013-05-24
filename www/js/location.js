@@ -11,14 +11,21 @@ function locationErrorToString(errCode) {
 }
 
 function showLocation(elt, position) {
-	elt.text(
-		'Latitude: '          + position.coords.latitude          + '\n' +
-		'Longitude: '         + position.coords.longitude         + '\n' +
-		'Altitude: '          + position.coords.altitude          + '\n' +
-		'Accuracy: '          + position.coords.accuracy          + '\n' +
-		'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-		'Heading: '           + position.coords.heading           + '\n' +
-		'Speed: '             + position.coords.speed             + '\n' +
-		'Timestamp: '         + position.timestamp                + '\n'
-	);
+    elt.empty();
+	$([
+		'Latitude: '          + position.coords.latitude,
+		'Longitude: '         + position.coords.longitude,
+		'Altitude: '          + position.coords.altitude,
+        /*
+		'Accuracy: '          + position.coords.accuracy,
+		'Altitude Accuracy: ' + position.coords.altitudeAccuracy,
+        */
+		'Heading: '           + position.coords.heading,
+		'Speed: '             + position.coords.speed,
+		'Timestamp: '         + new Date(position.timestamp).toString()
+    ]).each(function(i, str) {
+            var line = $('<span>');
+            line.text(str).append($('<br>'));
+            elt.append(line);
+    });
 }

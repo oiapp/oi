@@ -87,7 +87,7 @@ function contactErrorToString(errCode) {
 	return "Error code " + errCode;
 }
 
-function showContacts(list) {
+function showContactsNoTimeout(list) {
 	navigator.contacts.find(
 		['*'],
 		function(contacts) {
@@ -115,4 +115,8 @@ function showContacts(list) {
             multiple: true
         }
 	);
+}
+
+function showContacts(list) {
+	setTimeout(showContactsNoTimeout, 0);
 }

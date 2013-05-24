@@ -92,13 +92,19 @@ function showContacts(list) {
 		['*'],
 		function(contacts) {
 			// Success
-			$(contacts).each(function(i, contact) {
-				var item = $('<li>');
-				item.addClass('contact').append(
-					makeTuple('Contact', contact) || $()
-				);
-				list.append(item);
-			});
+			if (true) {
+				// Display raw JSON
+				list.text(JSON.stringify(contacts));
+			} else {
+				// Pretty-print in HTML. FIXME: Works in Android, but in iOS lists same garbage multiple times.
+				$(contacts).each(function(i, contact) {
+					var item = $('<li>');
+					item.addClass('contact').append(
+						makeTuple('Contact', contact) || $()
+					);
+					list.append(item);
+				});
+			}
 			
 		},
 		function(error) {

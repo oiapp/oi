@@ -1,7 +1,8 @@
 function onDeviceReady(event) {
 	var theLocation, watch = undefined;
-	$('.jqueryOutput').text('Version ' + $.fn.jquery + ' initialised');
-   	$('.jqueryMobileOutput').text('Version ' + $.mobile.version + ' initialised');
+	$('.cordovaVersion').text(device.cordova);
+	$('.jQueryVersion').text($.fn.jquery);
+   	$('.jQueryMobileVersion').text($.mobile.version);
 	$('#takePicture').on('click', function() {
 		var elem = $('#thePicture');
 		takePicture(elem);

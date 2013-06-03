@@ -7,16 +7,14 @@
 	}
 	if ("undefined" === typeof(navigator.contacts.find)) {
 		navigator.contacts.find = function(fields, success, error, options) {
-			setTimeout(function() {
-				success([
-					{ string1: 'stringval1' },
-					{ array: [ 'zero', 'one', 'two' ] },
-					{ subobj: { foo: 'bar', baz: 'frort' } },
-					{ emptyString: '' },
-					{ nullval: null },
-					{ undefval: undefined }
-				]);
-			}, 0);
+			success([
+				{ string1: 'stringval1' },
+				{ array: [ 'zero', 'one', 'two' ] },
+				{ subobj: { foo: 'bar', baz: 'frort' } },
+				{ emptyString: '' },
+				{ nullval: null },
+				{ undefval: undefined }
+			]);
 		};
 	}
 	if ("undefined" === typeof(navigator.geolocation)) {
@@ -40,7 +38,25 @@
 			}, 0);
 		};
 	}
+	if ("undefined" === typeof(navigator.camera)) {
+		navigator.camera = {};
+	}
+	if ("undefined" === typeof(navigator.camera.getPicture)) {
+		navigator.camera.getPicture = function() {
+			// TODO: Return a data URI containing a test image
+		};
+	}
+	if ("undefined" === typeof(Camera)) {
+		Camera = {
+			DestinationType: {
+				FILE_URI: 1
+			}
+		};
+	}
 	if (!window.device) {
+		window.device = {
+			cordova: 'Emulated'
+		};
 		$(function(event) {
 			$(document).trigger('deviceready');
 		});

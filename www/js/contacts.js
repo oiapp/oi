@@ -90,25 +90,27 @@ function contactErrorToString(errCode) {
 	return "Error code " + errCode;
 }
 
-function showContactsNoTimeout(list) {
+function onContactsSuccess(list, contacts) {
+	list.empty();
+	// To display as JSON:
+	// list.text(JSON.stringify(contacts));
+	$(contacts).each(function(i, contact) {
+		var item = $('<li>');
+		item.addClass('contact').append(
+			makeTuple('Contact', contact) || $()
+		);
+		list.append(item);
+	});
+}
+
+function showContacts(list) {
 	navigator.contacts.find(
 		['*'],
 		function(contacts) {
-			// Success
-			if (false) {
-				// Display raw JSON
-				list.text(JSON.stringify(contacts));
-			} else {
-				// Pretty-print in HTML. FIXME: Works in Android, but in iOS lists same garbage multiple times.
-				$(contacts).each(function(i, contact) {
-					var item = $('<li>');
-					item.addClass('contact').append(
-						makeTuple('Contact', contact) || $()
-					);
-					list.append(item);
-				});
-			}
-			
+			// FIXME: This setTimeout is an attempt to prevent the app crashing on one iOS device with >1500 contacts
+			setTimeout(function() {
+				onContactsSuccess(list, contacts);
+			}, 0);
 		},
 		function(error) {
 			// Failure
@@ -118,8 +120,4 @@ function showContactsNoTimeout(list) {
             multiple: true
         }
 	);
-}
-
-function showContacts(list) {
-	setTimeout(showContactsNoTimeout, 0);
 }

@@ -1,6 +1,6 @@
 function locationErrorToString(errCode) {
 	if (typeof(PositionError) === "undefined") {
-		return "Contact error " + errCode + " (details from PositionError unavailable)";
+		return "Location error " + errCode + " (details from PositionError unavailable)";
 	}
 	switch (errCode) {
 	case PositionError.PERMISSION_DENIED:

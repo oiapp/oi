@@ -5,10 +5,6 @@
         line-height: 0px;
 }
 
-.jqueryOutput {
-	font-size: smaller;
-}
-
-.jqueryMobileOutput {
+.jQueryVersion, .jQueryMobileVersion, .cordovaVersion, #theLocation {
 	font-size: smaller;
 }
